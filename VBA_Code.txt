@@ -1,0 +1,34 @@
+Sub Email_from_excel()
+
+Dim Cell As Range
+Columns("C:C").Select
+Set cell = Selection.Find(What:="116", After:=ActiveCell, LookIn:=xlFormulas, _
+        LookAt:=xlWhole, SearchOrder:=xlByRows, SearchDirection:=xlNext, _
+        MatchCase:=False, SearchFormat:=False)
+
+If cell Is Nothing Then
+    	'do it something
+	End
+Else
+    	'do it another thing
+	' Create objects
+	Dim emailApplication As Object
+	Dim emailItem As Object
+
+	'Connect to email
+	Set emailApplication = CreateObject("Outlook.Application")
+	Set emailItem = emailApplication.CreateItem(0)
+
+	' Declare what you want to send
+	emailItem.to = "brynlcaron@gmail.com"
+
+	emailItem.Subject = "Plant Monitor"
+
+	emailItem.Body = "You need to water your plant."
+
+	emailItem.send
+End If
+
+End Sub
+
+
